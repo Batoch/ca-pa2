@@ -52,6 +52,34 @@
 	} while (0)
 
 #define CHECK(RES, ANS) printf("%s"RESET, (RES) == (ANS) ? GREEN"CORRECT" : RED"WRONG")
+#define COMP(RES, ANS, TYPENAME) comp_##TYPENAME(RES, ANS)
+
+static void comp_int(uint32_t result, uint32_t answer)
+{
+	CHECK(result, answer);
+}
+
+static void comp_fp12(uint16_t result, uint16_t answer)
+{
+	uint16_t exp = 0x7e0 & result;
+	uint16_t frac = 0x1f & result;
+	if (exp == 0x7e0 && frac != 0) {
+		result &= 0xffe0;
+		result++;
+	}
+	CHECK(result, answer);
+}
+
+static void comp_float(uint32_t result, uint32_t answer)
+{
+	uint32_t exp = 0x7f800000 & result;
+	uint32_t frac = 0x7fffff & result;
+	if (exp == 0x7f800000 && frac != 0) {
+		result &= 0xff800000;
+		result++;
+	}
+	CHECK(result, answer);
+}
 
 #define N 6
 
@@ -83,7 +111,7 @@ int main(void)
 		printf(", ");
 		PRINT(uint16_t, "ans", ans1[i]);
 		printf(", ");
-		CHECK(result, ans1[i]);
+		COMP(result, ans1[i], fp12);
 		printf("\n");
 	}
 
@@ -97,7 +125,7 @@ int main(void)
 		printf(", ");
 		PRINT(uint32_t, "ans", ans2[i]);
 		printf(", ");
-		CHECK(result, ans2[i]);
+		COMP(result, ans2[i], int);
 		printf("\n");
 	}
 
@@ -113,7 +141,7 @@ int main(void)
 		printf(", ");
 		PRINT(uint16_t, "ans", ans3[i]);
 		printf(", ");
-		CHECK(result, ans3[i]);
+		COMP(result, ans3[i], fp12);
 		printf("\n");
 	}
 
@@ -129,7 +157,7 @@ int main(void)
 		printf(", ");
 		PRINT(uint32_t, "ans", ans4[i]);
 		printf(", ");
-		CHECK(result, ans4[i]);
+		COMP(result, ans4[i], float);
 		printf("\n");
 	}
 
