@@ -60,6 +60,7 @@ float fp12_float(fp12 x);           // convert fp12 -> float
 ### fp12_int() (20 points)
 
 - Any fractional part is dropped when `fp12`-type values are converted to integers. This is same as rounding into the integer using the round-toward-zero mode.
+- If the value is too large to represent as an integer, it is converted to the smallest number in `int` (i.e., 0x80000000).
 - Both of -0.0 and +0.0 in `fp12` should be converted to the value 0 in `int`.
 - Convert +∞ and -∞ in `fp12` to the smallest number in `int` (i.e., 0x80000000).
 - +NaN and -NaN in `fp12` are also converted to the smallest number in `int` (i.e., 0x80000000).
@@ -74,7 +75,7 @@ float fp12_float(fp12 x);           // convert fp12 -> float
 
 ### fp12_float() (20 points)
 
-- The `fp12` type is a subset of the `float` type. Hence, all the values in `fp12` can be converted in the `float` format without any error.
+- The `fp12` type is a subset of the `float` type. Hence, all the values in `fp12` can be converted to the `float` format without any error.
 - Again, +∞ and -∞ in `fp12` should be converted to the corresponding +∞ and -∞ in `float`, respectively. +NaN and -NaN in `fp12` should be converted to the corresponding +NaN and -NaN in `float`, respectively. You can use any of allowed bit patterns for NaN.
 - You can safely assume that the upper 4 bits of the `fp12`-type input are always same as its sign bit.
 
