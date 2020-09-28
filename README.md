@@ -1,5 +1,3 @@
-# README
-
 # 4190.308 Computer Architecture (Fall 2020)
 
 # Project #2: FP12 (12-bit floating Point) Representation
