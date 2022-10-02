@@ -154,7 +154,7 @@ You are required to complete the `int_fp12()`, `fp12_int()`, `float_fp12()`, and
 
 Have fun!
 
-[Jin-Soo Kim](mailto:jinsoo.kim_AT_snu.ac.kr)  
+[Jin-Soo Kim](mailto:jinsoo.kim@snu.ac.kr)  
 [Systems Software and Architecture Laboratory](http://csl.snu.ac.kr)  
 [Dept. of Computer Science and Engineering](http://cse.snu.ac.kr)  
 [Seoul National University](http://www.snu.ac.kr)
